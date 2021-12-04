@@ -14,7 +14,10 @@ const prompt = {
     {
       title: 'Day 1: Sonar Sweep - Part 2',
       value: { day: 1, part: 2 },
-      selected: true,
+    },
+    {
+      title: 'Day 2: Dive! - Part 1',
+      value: { day: 2, part: 1 },
     },
   ],
 }
@@ -29,7 +32,14 @@ const line = '-'.repeat(process.stdout.columns / 2)
 const processInput = ({ day, part }) => {
   const input = readInput(`${__dirname}/src/day${day}/input.txt`)
   const run = require(`./src/day${day}/part${part}`).default
+
   console.log(line)
-  run(input)
+
+  console.log('Input:')
+  console.log(input)
+
+  const answer = run(input)
+  console.log(`Answer: ${answer}`)
+
   console.log(line)
 }
