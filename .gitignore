@@ -1,0 +1,6 @@
+# Environments
+.env*
+!.env.example
+
+# Package directories
+node_modules
