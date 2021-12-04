@@ -11,6 +11,11 @@ const prompt = {
       value: { day: 1, part: 1 },
       selected: true,
     },
+    {
+      title: 'Day 1: Sonar Sweep - Part 2',
+      value: { day: 1, part: 2 },
+      selected: true,
+    },
   ],
 }
 
