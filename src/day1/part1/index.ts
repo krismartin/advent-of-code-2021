@@ -1,10 +1,8 @@
 import type { Input } from '../../lib/readInput'
 type Measurements = Array<number>
 
-const run = (input: Input): void => {
+const run = (input: Input): number => {
   const measurements: Measurements = input.map((i) => parseInt(i))
-  console.log('Input:')
-  console.log(measurements)
 
   let increasedCount = 0
   measurements.reduce(
@@ -17,7 +15,7 @@ const run = (input: Input): void => {
     undefined
   )
 
-  console.log(`Answer: ${increasedCount}`)
+  return increasedCount
 }
 
 export default run

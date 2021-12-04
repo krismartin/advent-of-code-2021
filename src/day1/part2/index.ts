@@ -3,11 +3,9 @@ import slidingWindows from '../../lib/slidingWindows'
 import type { Input } from '../../lib/readInput'
 type Measurements = Array<number>
 
-const run = (input: Input): void => {
+const run = (input: Input): number => {
   const measurements: Measurements = input.map((i) => parseInt(i))
   const slidingMeasurements = slidingWindows(measurements, 3)
-  console.log('Input:')
-  console.log(slidingMeasurements)
 
   const sumOfSlidingMeasurements: Array<number> = slidingMeasurements.map(
     (window) => window.reduce((sum, measurement) => (sum += measurement), 0)
@@ -24,7 +22,7 @@ const run = (input: Input): void => {
     undefined
   )
 
-  console.log(`Answer: ${increasedCount}`)
+  return increasedCount
 }
 
 export default run
