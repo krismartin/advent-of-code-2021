@@ -16,8 +16,8 @@ const run = (input: Input): number => {
     depth: 0,
   }
 
-  const parsedInput = input.map((i) => parseInput(i))
-  parsedInput.forEach(({ move, unit }) => {
+  const steps = input.map((i) => parseInput(i))
+  steps.forEach(({ move, unit }) => {
     result[move] += unit
   })
 
