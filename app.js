@@ -23,6 +23,10 @@ const prompt = {
       title: 'Day 2: Dive! - Part 2',
       value: { day: 2, part: 2 },
     },
+    {
+      title: 'Day 3: Binary Diagnostic - Part 1',
+      value: { day: 3, part: 1 },
+    },
   ],
 }
 
