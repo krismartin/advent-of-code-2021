@@ -9,4 +9,10 @@ Typescript solutions to the Advent of Code 2021 puzzles. Check out https://adven
 
 ## How to
 
-TODO
+To setup your development environment:
+
+`npm install`
+
+To run the app:
+
+`npm run start`
