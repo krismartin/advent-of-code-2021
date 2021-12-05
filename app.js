@@ -27,6 +27,10 @@ const prompt = {
       title: 'Day 3: Binary Diagnostic - Part 1',
       value: { day: 3, part: 1 },
     },
+    {
+      title: 'Day 3: Binary Diagnostic - Part 2',
+      value: { day: 3, part: 2 },
+    },
   ],
 }
 
