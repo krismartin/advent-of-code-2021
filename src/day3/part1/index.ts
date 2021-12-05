@@ -1,14 +1,14 @@
 import type { Input } from '../../lib/readInput'
+import getMostFrequent from '../../lib/getMostFrequent'
 import convertBinaryToDecimal from '../../lib/convertBinaryToDecimal'
 import flipBits from '../../lib/flipBits'
 
 const calculateGammaRate = (input: Input): string => {
   const gammaRate = input[0].split('').map((_, index) => {
-    const binaryNumbers = input.map((binary) => binary[index])
-    const count = binaryNumbers.length
-
-    const countOnes = binaryNumbers.filter((bit) => bit === '1').length
-    return countOnes >= count - countOnes ? '1' : '0'
+    return getMostFrequent(
+      input.map((binary) => binary[index]),
+      { tieBreaker: '1' }
+    )
   })
 
   return gammaRate.join('')
