@@ -35,6 +35,10 @@ const prompt = {
       title: 'Day 4: Giant Squid - Part 1',
       value: { day: 4, part: 1 },
     },
+    {
+      title: 'Day 4: Giant Squid - Part 2',
+      value: { day: 4, part: 2 },
+    },
   ],
 }
 

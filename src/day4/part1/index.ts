@@ -9,17 +9,18 @@ type BoardNumber = {
   number: number
   marked: boolean
 }
-type Board = {
+export type Board = {
+  bingo: boolean
   rows: BoardNumber[][]
   cols: BoardNumber[][]
 }
-type Boards = Array<Board>
+export type Boards = Array<Board>
 
 const BOARD_SIZE: number = 5
 
-const markBoards = (boards: Boards, drawnNumber: number): void => {
+export const markBoards = (boards: Boards, drawnNumber: number): void => {
   boards.forEach((board, boardIndex) => {
-    Object.values(board)[0].forEach((numbers) => {
+    ;[board.rows, board.cols].forEach((numbers) => {
       const numbersToBeMarked = numbers
         .flat()
         .filter(({ number }) => number === drawnNumber)
@@ -28,7 +29,7 @@ const markBoards = (boards: Boards, drawnNumber: number): void => {
   })
 }
 
-const isBingo = (board: Board): boolean => {
+export const isBingo = (board: Board): boolean => {
   const markedRows = board.rows.find((numbers) =>
     numbers.every(({ marked }) => marked)
   )
@@ -46,8 +47,13 @@ const isBingo = (board: Board): boolean => {
   return false
 }
 
-const findBingo = (boards: Boards): Board | undefined =>
-  boards.find((board) => isBingo(board))
+const findBingo = (boards: Boards): Board | undefined => {
+  const board = boards.find((board) => isBingo(board))
+  if (board) {
+    board.bingo = true
+  }
+  return board
+}
 
 const createBoard = (numbers: Array<number>): Board => {
   const boardNumbers = numbers.map((number) => ({ number, marked: false }))
@@ -62,10 +68,10 @@ const createBoard = (numbers: Array<number>): Board => {
     return arr
   }, [])
 
-  return { rows, cols }
+  return { bingo: false, rows, cols }
 }
 
-const parseInput = (
+export const parseInput = (
   input: Input
 ): { drawnNumbers: DrawnNumbers; boards: Boards } => {
   const drawnNumbers = input[0].split(',').map((number) => parseInt(number))
@@ -81,7 +87,7 @@ const parseInput = (
   return { drawnNumbers, boards }
 }
 
-const printBoard = (board: Board) => {
+export const printBoard = (board: Board) => {
   board.rows.forEach((row) => {
     const numbers = row
       .map(({ number, marked }) =>
@@ -99,7 +105,7 @@ const run = (input: Input): number | undefined => {
 
   let lastDrawnNumber: DrawnNumber | undefined
 
-  const winningBoard = drawnNumbers.reduce(
+  const completedBoard = drawnNumbers.reduce(
     (winner: Board | undefined, drawnNumber) => {
       if (!winner) {
         markBoards(boards, drawnNumber)
@@ -111,15 +117,15 @@ const run = (input: Input): number | undefined => {
     undefined
   )
 
-  if (!winningBoard || !lastDrawnNumber) {
+  if (!completedBoard || !lastDrawnNumber) {
     console.warn('No Bingo!')
     return
   }
 
-  console.log('Winning board:')
-  printBoard(winningBoard)
+  console.log('Completed board:')
+  printBoard(completedBoard)
 
-  const unmarkedNumbers = winningBoard.rows
+  const unmarkedNumbers = completedBoard.rows
     .flat()
     .filter(({ marked }) => !marked)
     .map(({ number }) => number)
