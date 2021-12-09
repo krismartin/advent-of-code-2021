@@ -43,6 +43,10 @@ const prompt = {
       title: 'Day 5: Hydrothermal Venture - Part 2',
       value: { day: 5, part: 2 },
     },
+    {
+      title: 'Day 6: Lanternfish - Part 1',
+      value: { day: 6, part: 1 },
+    },
   ],
 }
 
