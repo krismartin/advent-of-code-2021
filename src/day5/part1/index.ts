@@ -6,9 +6,7 @@ import type { Input } from '../../lib/readInput'
 type Coordinate = [number, number]
 type LineCoordinates = [Coordinate, Coordinate]
 
-const getLinePoints = (
-  lineCoordinates: LineCoordinates
-): Array<Coordinate> | undefined => {
+const getLinePoints = (lineCoordinates: LineCoordinates): Array<Coordinate> => {
   const [x1, y1] = lineCoordinates[0]
   const [x2, y2] = lineCoordinates[1]
 
@@ -52,11 +50,7 @@ export const getPoints = (
   linesCoordinates: Array<LineCoordinates>
 ): Array<Coordinate> => {
   return linesCoordinates.reduce((arr: Array<Coordinate>, lineCoordinates) => {
-    const points = getLinePoints(lineCoordinates)
-    if (!points) {
-      return arr
-    }
-    return arr.concat(points)
+    return arr.concat(getLinePoints(lineCoordinates))
   }, [])
 }
 
