@@ -1,6 +1,6 @@
 import type { Input } from '../../lib/readInput'
 
-const parseInput = (input: Input): Array<number> =>
+export const parseInput = (input: Input): Array<number> =>
   input[0].split(',').map((i) => parseInt(i))
 
 const run = (input: Input): number => {
