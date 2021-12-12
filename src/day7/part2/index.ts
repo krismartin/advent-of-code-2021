@@ -1,4 +1,5 @@
 import type { Input } from '../../lib/readInput'
+import sumArray from '../../lib/sumArray'
 import range from '../../lib/range'
 
 export const parseInput = (input: Input): Array<number> =>
@@ -19,7 +20,9 @@ const run = (input: Input): number | undefined => {
         if (position === currentPosition) {
           return total
         }
-        const cost = Math.abs(position - currentPosition)
+        const diff = Math.abs(position - currentPosition)
+        // https://en.wikipedia.org/wiki/1_%2B_2_%2B_3_%2B_4_%2B_%E2%8B%AF
+        const cost = (diff * (diff + 1)) / 2
         return total + cost
       },
       0

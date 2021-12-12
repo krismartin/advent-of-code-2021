@@ -59,6 +59,10 @@ const prompt = {
       title: 'Day 7: The Treachery of Whales - Part 1',
       value: { day: 7, part: 1 },
     },
+    {
+      title: 'Day 7: The Treachery of Whales - Part 2',
+      value: { day: 7, part: 2 },
+    },
   ],
 }
 
