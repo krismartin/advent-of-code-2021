@@ -1,5 +1,4 @@
 import type { Input } from '../../lib/readInput'
-import sumArray from '../../lib/sumArray'
 import range from '../../lib/range'
 
 export const parseInput = (input: Input): Array<number> =>
