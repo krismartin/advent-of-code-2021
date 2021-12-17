@@ -12,7 +12,7 @@ const includes = (
   return [...str2].every((x) => set.has(x))
 }
 
-const run = (input: Input): number | undefined => {
+const run = (input: Input): number => {
   const entries = parseInput(input)
 
   const answer = entries.reduce((sum: number, entry) => {

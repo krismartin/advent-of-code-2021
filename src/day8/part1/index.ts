@@ -23,7 +23,7 @@ export const parseInput = (input: Input): Array<LineEntry> =>
     return entries
   }, [])
 
-const run = (input: Input): number | undefined => {
+const run = (input: Input): number => {
   const outputValues = parseInput(input).map((lineEntry) => lineEntry[1])
   const digitsToFind = [1, 4, 7, 8]
   const segmentsToFind = digitsToFind.map(
