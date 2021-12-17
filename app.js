@@ -71,6 +71,10 @@ const prompt = {
       title: 'Day 8: Seven Segment Search - Part 2',
       value: { day: 8, part: 2 },
     },
+    {
+      title: 'Day 9: Smoke Basin - Part 1',
+      value: { day: 9, part: 1 },
+    },
   ],
 }
 
