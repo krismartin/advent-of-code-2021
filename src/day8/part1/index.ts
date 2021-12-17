@@ -1,6 +1,8 @@
 import type { Input } from '../../lib/readInput'
 
+type SignalPattern = Array<string>
 type OutputValue = Array<string>
+type LineEntry = [SignalPattern, OutputValue]
 
 const DIGIT_SEGMENT_MAPPINGS: { [digit: number]: number } = {
   1: 2, // 1 -> 2 segments
@@ -14,15 +16,15 @@ const DIGIT_SEGMENT_MAPPINGS: { [digit: number]: number } = {
   9: 6, // 9 -> 6 segments
 }
 
-export const parseInput = (input: Input): Array<OutputValue> =>
-  input.reduce((values: Array<OutputValue>, entry) => {
-    const outputValues = entry.split('| ')[1]
-    values.push(outputValues.split(' '))
-    return values
+export const parseInput = (input: Input): Array<LineEntry> =>
+  input.reduce((entries: Array<LineEntry>, entry) => {
+    const [signalPatterns, outputValues] = entry.split(' | ')
+    entries.push([signalPatterns.split(' '), outputValues.split(' ')])
+    return entries
   }, [])
 
 const run = (input: Input): number | undefined => {
-  const outputValues = parseInput(input)
+  const outputValues = parseInput(input).map((lineEntry) => lineEntry[1])
   const digitsToFind = [1, 4, 7, 8]
   const segmentsToFind = digitsToFind.map(
     (digit) => DIGIT_SEGMENT_MAPPINGS[digit]
