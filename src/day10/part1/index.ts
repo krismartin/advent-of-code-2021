@@ -1,75 +1,67 @@
 import type { Input } from '../../lib/readInput'
 import sumArray from '../../lib/sumArray'
 
-const OPENING_CHARS: Array<string> = ['(', '[', '{', '<']
-const ILLEGAL_CHAR_SCORES: Record<string, number> = {
+export const MAPPINGS: Record<string, string> = {
+  '(': ')',
+  '[': ']',
+  '{': '}',
+  '<': '>',
+}
+const OPENING_CHARS = Object.keys(MAPPINGS)
+const SCORES: Record<string, number> = {
   ')': 3,
   ']': 57,
   '}': 1197,
   '>': 25137,
 }
 
-const parseInput = (input: Input): string[][] =>
+export const parseInput = (input: Input): string[][] =>
   input.map((line) => line.split(''))
 
 const isValidClosingChar = (
   openingChar: string,
   closingChar: string
-): boolean => {
-  if (openingChar === '(' && closingChar === ')') {
-    return true
-  } else if (openingChar === '[' && closingChar === ']') {
-    return true
-  } else if (openingChar === '{' && closingChar === '}') {
-    return true
-  } else if (openingChar === '<' && closingChar === '>') {
-    return true
-  }
+): boolean => MAPPINGS[openingChar] === closingChar
 
-  return false
-}
-
-const isValid = (
+export const checkSyntax = (
   line: Array<string>
-): { valid: boolean; illegalChar: string | undefined } => {
-  let openingChars: Array<string> = []
+): {
+  illegalChar: string | undefined
+  unclosedChars: Array<string>
+} => {
+  let unclosedChars: Array<string> = []
   let illegalChar: string | undefined
 
-  line.every((char) => {
+  line.forEach((char) => {
     if (OPENING_CHARS.includes(char)) {
-      openingChars.push(char)
-      return true
+      unclosedChars.push(char)
     } else {
-      const lastOpeningChar = openingChars[openingChars.length - 1]
+      const lastUnclosedChar = unclosedChars[unclosedChars.length - 1]
 
-      if (isValidClosingChar(lastOpeningChar, char)) {
-        openingChars.pop()
-        return true
-      } else {
+      if (isValidClosingChar(lastUnclosedChar, char)) {
+        unclosedChars.pop()
+      } else if (!illegalChar) {
         illegalChar = char
-        return false
       }
     }
   })
 
   return {
-    valid: !illegalChar,
     illegalChar,
+    unclosedChars,
   }
 }
 
 const run = (input: Input): number => {
-  const illegalChars = parseInput(input).reduce(
-    (result: Array<string>, line) => {
-      const { illegalChar } = isValid(line)
-      if (illegalChar) {
-        result.push(illegalChar)
-      }
-      return result
-    },
-    []
+  const illegalChars = parseInput(input)
+    .map((line) => checkSyntax(line))
+    .filter(({ illegalChar }) => Boolean(illegalChar))
+    .map(({ illegalChar }) => illegalChar)
+
+  const answer = sumArray(
+    illegalChars.map((char) => (char && SCORES[char]) || 0)
   )
-  const answer = sumArray(illegalChars.map((char) => ILLEGAL_CHAR_SCORES[char]))
+
   return answer
 }
 
