@@ -91,6 +91,10 @@ const prompt = {
       title: 'Day 11: Dumbo Octopus - Part 1',
       value: { day: 11, part: 1 },
     },
+    {
+      title: 'Day 11: Dumbo Octopus - Part 2',
+      value: { day: 11, part: 2 },
+    },
   ],
 }
 
