@@ -99,6 +99,10 @@ const prompt = {
       title: 'Day 12: Passage Pathing - Part 1',
       value: { day: 12, part: 1 },
     },
+    {
+      title: 'Day 12: Passage Pathing - Part 2',
+      value: { day: 12, part: 2 },
+    },
   ],
 }
 
