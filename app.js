@@ -103,6 +103,10 @@ const prompt = {
       title: 'Day 12: Passage Pathing - Part 2',
       value: { day: 12, part: 2 },
     },
+    {
+      title: 'Day 13: Transparent Origami - Part 1',
+      value: { day: 13, part: 1 },
+    },
   ],
 }
 
