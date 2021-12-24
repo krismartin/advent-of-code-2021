@@ -1,12 +1,11 @@
 import type { Input } from '../../lib/readInput'
-import isUpperCase from '../../lib/isUpperCase'
 
-type Coordinate = {
+export type Coordinate = {
   x: number
   y: number
 }
 
-const FOLD_INSTRUCTIONS = [
+export const FOLD_INSTRUCTIONS = [
   { x: 655 },
   { y: 447 },
   { x: 327 },
@@ -28,7 +27,7 @@ export const parseInput = (input: Input): Array<Coordinate> =>
     return result
   }, [])
 
-const transformCoordinates = (
+export const transformCoordinates = (
   coordinates: Array<Coordinate>,
   instructions: { fold: { x?: number; y?: number } }
 ): void => {
