@@ -107,6 +107,10 @@ const prompt = {
       title: 'Day 13: Transparent Origami - Part 1',
       value: { day: 13, part: 1 },
     },
+    {
+      title: 'Day 13: Transparent Origami - Part 2',
+      value: { day: 13, part: 2 },
+    },
   ],
 }
 
